@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>荷物問い合わせ番号埋め込みURL作成</title>
+<style type="text/css">
+body { font-family: "Arial","メイリオ","ヒラギノ角ゴシック",sans-serif ; margin: 30px; }
+H1 { font-size:130%; margin: 20pt 0 0 0;  }
+H2 { font-size:120%; margin: 20pt 0 0 0;  }
+label { margin: 0 10px 30px 10px; }
+#noText { font-size: 120%; }
+color: #;
+font-size: 1.5em;
+}
+</style>
+</head>
+<body>
+
+
+<h1>荷物問い合わせ番号埋め込みURL作成</h1>
+
+<p>
+<label>問い合わせ番号：<input type="text" size="20" id="noText"></label>
+<input type="button" onclick="showMessage()" value="送信">
+</p>
+
+<p id="msg"></p>
+
+
+
+<script language="javascript" type="text/javascript">
+const showMessage = () => {
+const textbox = document.getElementById("noText");
+let ivID = textbox.value;
+
+//テキストボックスの値を使って、出力するメッセージを生成する
+const output = `
+
+<h2>日本郵便</h2>
+<a href="https://trackings.post.japanpost.jp/services/srv/search/?requestNo1=${ivID}&search=追跡スタート" target="_blank">
+https://trackings.post.japanpost.jp/services/srv/search/?requestNo1=${ivID}&search=追跡スタート
+</a>
+
+<h2>クロネコヤマトの荷物お問い合わせシステム</h2>
+<a href="http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=${ivID}" target="_blank">
+http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=${ivID}
+</a>
+
+<h2>佐川急便 – 【お荷物問い合わせサービス】</h2>
+<a href="http://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=${ivID}" target="_blank">
+http://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=${ivID}
+</a>
+
+<h2>お荷物配達状況照会・お問い合わせ番号から照会｜福山通運</h2>
+<a href="https://corp.fukutsu.co.jp/situation/tracking_no_hunt/${ivID}" target="_blank">
+https://corp.fukutsu.co.jp/situation/tracking_no_hunt/${ivID}
+</a>
+`;
+//出力用のp要素にメッセージを表示
+document.getElementById("msg").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
+
